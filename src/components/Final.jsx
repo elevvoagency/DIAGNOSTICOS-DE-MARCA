@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Isotipo } from './Logo';
+import { Isotipo, Wordmark } from './Logo';
 import { buildSummaryHtml, buildSummaryText } from '../lib/summary';
 
 const WA = (import.meta.env.VITE_WHATSAPP_NUMBER || '573104213595').replace(/\D/g, '');
@@ -48,7 +48,9 @@ export default function Final({ contact, answers, submitted, status, onRetry }) 
   return (
     <section className="mx-auto w-full max-w-3xl px-6 py-10 text-center sm:px-10">
       <Isotipo size={56} className="mx-auto" />
-      <h1 className="mt-6 text-4xl font-semibold tracking-[0.34em] sm:text-6xl">ELEVVO</h1>
+      <h1 className="mt-7 flex justify-center">
+        <Wordmark height={30} className="sm:!h-[44px]" />
+      </h1>
       <p className="mt-4 text-[11px] tracking-[0.3em] text-silver/70 sm:text-sm">
         GROWTH · STRATEGY · DIGITAL TRANSFORMATION
       </p>
