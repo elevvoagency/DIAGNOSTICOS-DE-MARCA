@@ -1,4 +1,4 @@
-const KEY = 'elevvo_diag_v1';
+const KEY = 'elevvo_diag_v2';
 
 // ?reset=1 limpia el progreso guardado (útil para pruebas).
 export function loadState() {

@@ -124,3 +124,24 @@ export function validate(q, v) {
   }
   return '';
 }
+
+// Depura respuestas guardadas con otra versión del formulario: si la forma no coincide, usa el valor inicial.
+export function sanitizeAnswers(saved) {
+  const out = initialAnswers();
+  if (!saved || typeof saved !== 'object') return out;
+  for (const q of QUESTIONS) {
+    const v = saved[q.id];
+    if (q.type === 'text' && typeof v === 'string') out[q.id] = v;
+    else if (q.type === 'list' && Array.isArray(v) && v.every((x) => typeof x === 'string')) {
+      const arr = v.slice(0, q.max);
+      while (arr.length < q.base) arr.push('');
+      out[q.id] = arr;
+    } else if (
+      q.type === 'services' &&
+      Array.isArray(v) &&
+      v.length === q.rows &&
+      v.every((r) => r && typeof r.name === 'string' && typeof r.desc === 'string')
+    ) out[q.id] = v;
+  }
+  return out;
+}

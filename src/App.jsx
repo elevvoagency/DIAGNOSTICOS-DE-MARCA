@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { QUESTIONS, TOTAL, initialAnswers } from './data/questions';
+import { QUESTIONS, TOTAL, sanitizeAnswers } from './data/questions';
 import { loadState, saveState } from './lib/storage';
 import { buildPayload } from './lib/summary';
 import { submitDiagnosis } from './lib/submit';
@@ -18,7 +18,7 @@ export default function App() {
   const [stage, setStage] = useState(saved?.stage === 'sending' ? 'quiz' : saved?.stage || 'welcome');
   const [idx, setIdx] = useState(Math.min(saved?.idx ?? 0, TOTAL - 1));
   const [dir, setDir] = useState(1);
-  const [answers, setAnswers] = useState(() => ({ ...initialAnswers(), ...(saved?.answers || {}) }));
+  const [answers, setAnswers] = useState(() => sanitizeAnswers(saved?.answers));
   const [contact, setContact] = useState(saved?.contact || { name: '', brand: '', reach: '' });
   const [submitted, setSubmitted] = useState(!!saved?.submitted);
   const [status, setStatus] = useState('idle');
