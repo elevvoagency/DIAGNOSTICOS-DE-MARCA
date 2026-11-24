@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  background: #0d1117;
+  color: #fff;
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: #d1d5db;
+  color: #0d1117;
+}
+
+@layer components {
+  .field {
+    @apply w-full rounded-none border-0 border-b border-white/15 bg-transparent py-3 text-xl font-light text-white outline-none transition-colors placeholder:text-white/20 focus:border-silver sm:text-2xl;
+    caret-color: #d1d5db;
+  }
+  .field-sm {
+    @apply w-full rounded-none border-0 border-b border-white/15 bg-transparent py-2 text-base font-light text-white outline-none transition-colors placeholder:text-white/20 focus:border-silver sm:text-lg;
+    caret-color: #d1d5db;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium tracking-wide text-ink transition hover:bg-silver active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-50;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-medium tracking-wide text-white transition hover:border-white/60 hover:bg-white/5 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm text-silver/70 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white;
+  }
+}
+
+/* Fondo atmosférico: resplandor superior + retícula sutil */
+.backdrop {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% -10%, rgba(209, 213, 219, 0.1), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(27, 31, 41, 0.9), transparent 70%),
+    #0d1117;
+}
+.backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000, transparent 80%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000, transparent 80%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
