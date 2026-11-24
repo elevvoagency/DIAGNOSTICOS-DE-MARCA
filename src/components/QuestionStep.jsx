@@ -46,6 +46,7 @@ export default function QuestionStep({ q, index, value, onChange, onNext, onPrev
           max={q.max}
           addLabel={q.addLabel}
           examples={q.examples}
+          placeholder={q.placeholder}
           twoCols={q.twoCols}
         />
       )}

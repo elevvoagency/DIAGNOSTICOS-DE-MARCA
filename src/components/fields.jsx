@@ -37,7 +37,8 @@ export function TextField({ label, value, onChange, placeholder, type = 'text', 
   );
 }
 
-export function ListField({ value, onChange, min, max, addLabel, examples, twoCols }) {
+export function ListField({ value, onChange, min, max, addLabel, examples, placeholder, twoCols }) {
+  const canAdd = max > min;
   const ref = useRef(null);
   const filled = value.filter((v) => v.trim()).length;
   const set = (i, v) => onChange(value.map((x, j) => (j === i ? v : x)));
@@ -60,7 +61,7 @@ export function ListField({ value, onChange, min, max, addLabel, examples, twoCo
             <input
               value={v}
               onChange={(e) => set(i, e.target.value)}
-              placeholder={examples?.[i] ? `Ej. ${examples[i]}` : ''}
+              placeholder={examples?.[i] ? `Ej. ${examples[i]}` : placeholder || ''}
               aria-label={`${i + 1}`}
               className="field-sm"
             />
@@ -68,16 +69,21 @@ export function ListField({ value, onChange, min, max, addLabel, examples, twoCo
         ))}
       </div>
       <div className="mt-5 flex items-center justify-between gap-4 text-sm">
-        <button
-          type="button"
-          onClick={add}
-          disabled={value.length >= max}
-          className="text-silver/70 transition hover:text-white disabled:opacity-30"
-        >
-          + {addLabel}
-        </button>
+        {canAdd ? (
+          <button
+            type="button"
+            onClick={add}
+            disabled={value.length >= max}
+            className="text-silver/70 transition hover:text-white disabled:opacity-30"
+          >
+            + {addLabel}
+          </button>
+        ) : (
+          <span />
+        )}
         <span className="tabular-nums text-silver/50">
-          {filled} / {min} mínimo
+          {filled} / {min}
+          {canAdd ? ' mínimo' : ''}
         </span>
       </div>
     </div>

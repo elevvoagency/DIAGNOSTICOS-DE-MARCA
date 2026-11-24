@@ -25,10 +25,8 @@ export default function Welcome({ onStart }) {
         Construyamos una marca con propósito, identidad y dirección.
       </p>
       <p className="mt-8 max-w-2xl text-base font-light leading-relaxed text-silver/70 sm:text-lg">
-        Este diagnóstico tiene como objetivo conocer tu historia, entender tu industria, identificar tus principales
-        productos o servicios y descubrir qué quieres proyectar a través de tu marca personal. Queremos entender quién
-        eres, qué haces, por qué lo haces y hacia dónde quieres llevar tu marca. No existen respuestas correctas o
-        incorrectas. Responde con naturalidad y procura ser lo más auténtico posible.
+        Este breve diagnóstico nos permitirá conocer tu esencia, entender tu industria, identificar tus fortalezas y
+        definir hacia dónde quieres llevar tu marca personal.
       </p>
       <div className="mt-10 flex flex-wrap items-center gap-5">
         <button type="button" onClick={onStart} className="btn-primary group">
